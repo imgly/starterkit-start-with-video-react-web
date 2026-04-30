@@ -27,15 +27,15 @@ interface AppProps {
 // ============================================================================
 
 export default function App({ config }: AppProps) {
-  const [selectedVideo, setSelectedVideo] = useState<VideoAsset>(
-    VIDEO_CATALOG[0]
-  );
+  const [selectedVideo, setSelectedVideo] = useState<VideoAsset | null>(null);
   const [editorKey, setEditorKey] = useState(0);
 
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
       // Debug access (remove in production)
       (window as any).cesdk = cesdk;
+
+      if (selectedVideo == null) return;
 
       // Initialize with the selected video
       await initStartWithVideoEditor(cesdk, selectedVideo.full);
@@ -57,12 +57,14 @@ export default function App({ config }: AppProps) {
         onSelect={handleVideoSelect}
       />
       <div className={styles.editorWrapper}>
-        <CreativeEditor
-          key={editorKey}
-          className={styles.editor}
-          config={config}
-          init={handleInit}
-        />
+        {selectedVideo != null && (
+          <CreativeEditor
+            key={editorKey}
+            className={styles.editor}
+            config={config}
+            init={handleInit}
+          />
+        )}
       </div>
     </div>
   );
