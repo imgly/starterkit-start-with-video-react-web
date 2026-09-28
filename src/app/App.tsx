@@ -34,8 +34,6 @@ export default function App({ config }: AppProps) {
 
   const handleInit = useCallback(
     async (cesdk: CreativeEditorSDK) => {
-      // Debug access (remove in production)
-      (window as any).cesdk = cesdk;
 
 
       if (selectedVideo == null) return;
