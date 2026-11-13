@@ -8,7 +8,7 @@
 // so the URL has to be absolute.
 const configured: string =
   import.meta.env.VITE_DEMO_ASSETS_BASE_URL ??
-  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.86.1/starterkit-start-with-video';
+  'https://staticimgly.com/imgly/cesdk-web-examples-data/1.86.2/starterkit-start-with-video';
 
 export const DEMO_ASSETS_BASE_URL: string = (
   typeof location === 'undefined'
